@@ -7,16 +7,16 @@
       "config": {
         "distDir": "dist"
       }
-    },
-    {
-      "src": "functions/send-booking-notification/index.js",
-      "use": "@vercel/edge"
-    },
-    {
-      "src": "functions/send-calendar-event/index.js",
-      "use": "@vercel/edge"
     }
   ],
+  "functions": {
+    "functions/send-booking-notification/index.js": {
+      "runtime": "edge"
+    },
+    "functions/send-calendar-event/index.js": {
+      "runtime": "edge"
+    }
+  },
   "routes": [
     {
       "src": "/api/send-booking-notification",

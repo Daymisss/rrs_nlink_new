@@ -1,10 +1,22 @@
 export function PartnersSection() {
   const partners = [
     { 
-      name: 'Mitre 10', 
-      description: 'Building supplies', 
-      website: 'https://www.mitre10.co.nz',
-      logo: '/partners/mitre10.svg'
+      name: 'Dimond Roofing', 
+      description: 'Premium roofing solutions', 
+      website: 'https://www.dimond.co.nz',
+      logo: '/partners/dimond-roofing.svg'
+    },
+    { 
+      name: 'Konnect Fastening', 
+      description: 'Fastening systems', 
+      website: 'https://www.konnectfastening.com',
+      logo: '/partners/konnect-fastening.svg'
+    },
+    { 
+      name: 'Stronghold Fasteners', 
+      description: 'Quality fasteners', 
+      website: 'https://www.strongholdfasteners.com',
+      logo: '/partners/stronghold-fasteners.svg'
     },
     { 
       name: 'Bunnings', 
@@ -19,16 +31,28 @@ export function PartnersSection() {
       logo: '/partners/colorsteel.svg'
     },
     { 
+      name: 'ColorCote', 
+      description: 'Coating solutions', 
+      website: 'https://www.colorcote.co.nz',
+      logo: '/partners/colorcote.svg'
+    },
+    { 
       name: 'VELUX', 
       description: 'Skylight specialists', 
       website: 'https://www.velux.co.nz',
       logo: '/partners/velux.svg'
     },
     { 
-      name: 'Master Builders', 
-      description: 'Industry association', 
-      website: 'https://www.masterbuilders.org.nz',
-      logo: '/partners/master-builders.svg'
+      name: 'Site Safe', 
+      description: 'Construction safety', 
+      website: 'https://www.sitesafe.org.nz',
+      logo: '/partners/site-safe.svg'
+    },
+    { 
+      name: 'Mitre 10', 
+      description: 'Building supplies', 
+      website: 'https://www.mitre10.co.nz',
+      logo: '/partners/mitre10.svg'
     },
     { 
       name: 'WorkSafe NZ', 
@@ -59,12 +83,6 @@ export function PartnersSection() {
       description: 'Building products', 
       website: 'https://www.jameshardie.co.nz',
       logo: '/partners/james-hardie.svg'
-    },
-    { 
-      name: 'Site Safe', 
-      description: 'Construction safety', 
-      website: 'https://www.sitesafe.org.nz',
-      logo: '/partners/site-safe.svg'
     },
     { 
       name: 'Altus', 

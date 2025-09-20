@@ -1,0 +1,14 @@
+<svg width="120" height="60" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dimond Roofing Logo -->
+  <g>
+    <!-- Roof Icon -->
+    <path d="M20 15 L30 5 L40 15 L35 15 L30 10 L25 15 Z" fill="#DC2626"/>
+    <path d="M30 5 L40 15 L50 5 L40 5 Z" fill="#000000"/>
+    <line x1="20" y1="15" x2="50" y2="15" stroke="#DC2626" stroke-width="2"/>
+    
+    <!-- Text -->
+    <text x="60" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000000">Dimond</text>
+    <text x="60" y="35" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000000">Roofing</text>
+    <text x="95" y="35" font-family="Arial, sans-serif" font-size="8" fill="#000000">®</text>
+  </g>
+</svg>

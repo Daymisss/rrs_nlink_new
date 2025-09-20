@@ -1,0 +1,13 @@
+<svg width="120" height="60" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- ColorCote Logo -->
+  <g>
+    <!-- Mountain peaks -->
+    <path d="M10 25 L20 15 L30 25 L25 25 L20 20 L15 25 Z" fill="#DC2626"/>
+    <path d="M20 15 L30 25 L40 15 L35 15 L30 20 L25 15 Z" fill="#2563EB"/>
+    <path d="M30 15 L40 25 L50 15 L45 15 L40 20 L35 15 Z" fill="#16A34A"/>
+    
+    <!-- Text -->
+    <text x="60" y="35" font-family="Arial, sans-serif" font-size="14" font-weight="bold" font-style="italic" fill="#000000">ColorCote</text>
+    <text x="110" y="35" font-family="Arial, sans-serif" font-size="8" fill="#000000">®</text>
+  </g>
+</svg>

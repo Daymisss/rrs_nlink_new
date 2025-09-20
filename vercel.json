@@ -1,12 +1,4 @@
 {
-  "functions": {
-    "functions/send-booking-notification/index.js": {
-      "runtime": "edge"
-    },
-    "functions/send-calendar-event/index.js": {
-      "runtime": "edge"
-    }
-  },
   "routes": [
     {
       "src": "/api/send-booking-notification",

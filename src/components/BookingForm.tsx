@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { X, Calendar, Clock, User, Mail, Phone, FileText, CheckCircle } from 'lucide-react'
 import { blink } from '../blink/client'
 
 interface BookingFormProps {
   isOpen: boolean
   onClose: () => void
+  initialService?: string
+  initialCategory?: string
 }
 
-export function BookingForm({ isOpen, onClose }: BookingFormProps) {
+export function BookingForm({ isOpen, onClose, initialService, initialCategory }: BookingFormProps) {
   const [step, setStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isConfirmed, setIsConfirmed] = useState(false)
@@ -38,6 +40,35 @@ export function BookingForm({ isOpen, onClose }: BookingFormProps) {
     '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
     '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM'
   ]
+
+  useEffect(() => {
+    // When modal opens with an initial service, pre-populate fields
+    if (isOpen && initialService) {
+      const category = initialCategory || (['Residential Roofing','Roof Repairs','Commercial Roofing','Gutters & Downpipes'].includes(initialService) ? 'core' : 'specialty')
+      setFormData((prev) => ({
+        ...prev,
+        serviceCategory: category,
+        serviceType: initialService
+      }))
+      setStep(1)
+    }
+
+    // Reset form when modal closes
+    if (!isOpen) {
+      setFormData({
+        customerName: '',
+        customerEmail: '',
+        customerPhone: '',
+        serviceType: '',
+        serviceCategory: 'core',
+        appointmentDate: '',
+        appointmentTime: '',
+        additionalNotes: ''
+      })
+      setIsConfirmed(false)
+      setStep(1)
+    }
+  }, [isOpen, initialService, initialCategory])
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
@@ -79,15 +110,29 @@ export function BookingForm({ isOpen, onClose }: BookingFormProps) {
 
       // Send calendar & email/sms notifications via edge functions
       try {
-        const calResp = await fetch('https://functions.blink.new/reliable-roofing-solutions-website-zqr94aeq/send-calendar-event', {
+        // Map booking payload to function's expected shape
+        const fnBooking = {
+          id: bookingPayload.id,
+          selectedService: bookingPayload.serviceType,
+          selectedDate: bookingPayload.appointmentDate,
+          selectedTime: bookingPayload.appointmentTime,
+          name: bookingPayload.customerName,
+          phone: bookingPayload.customerPhone,
+          email: bookingPayload.customerEmail,
+          address: bookingPayload.address || '',
+          message: bookingPayload.additionalNotes,
+          createdAt: bookingPayload.createdAt
+        }
+
+        const calResp = await fetch('https://reliable-roofing-solutions-website-zqr94aeq.functions.blink.new/send-calendar-event', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ appointmentData: bookingPayload })
+          body: JSON.stringify({ appointmentData: fnBooking })
         })
-        const notifResp = await fetch('https://functions.blink.new/reliable-roofing-solutions-website-zqr94aeq/send-booking-notification', {
+        const notifResp = await fetch('https://reliable-roofing-solutions-website-zqr94aeq.functions.blink.new/send-booking-notification', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ booking: bookingPayload })
+          body: JSON.stringify({ booking: fnBooking })
         })
 
         if (calResp.ok) {

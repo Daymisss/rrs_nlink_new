@@ -6,30 +6,48 @@ import { WhyChooseUs } from './components/WhyChooseUs'
 import { PartnersSection } from './components/PartnersSection'
 import { BookingForm } from './components/BookingForm'
 import { Footer } from './components/Footer'
+import { Contact } from './components/Contact'
 
 function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false)
+  const [selectedService, setSelectedService] = useState<string | undefined>(undefined)
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined)
 
   const handleBookNow = () => {
+    setSelectedService(undefined)
+    setSelectedCategory(undefined)
     setIsBookingOpen(true)
   }
 
   const handleCloseBooking = () => {
     setIsBookingOpen(false)
+    setSelectedService(undefined)
+    setSelectedCategory(undefined)
+  }
+
+  const openBookingWithService = (serviceTitle: string, category?: string) => {
+    setSelectedService(serviceTitle)
+    setSelectedCategory(category)
+    setIsBookingOpen(true)
+    // Ensure modal is visible on small viewports
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
     <div className="min-h-screen">
       <NavBar />
       <Hero onBookNow={handleBookNow} />
-      <Services />
+      <Services onRequestBooking={openBookingWithService} />
       <WhyChooseUs />
       <PartnersSection />
+      <Contact />
       <Footer />
       
       <BookingForm 
         isOpen={isBookingOpen} 
         onClose={handleCloseBooking} 
+        initialService={selectedService}
+        initialCategory={selectedCategory}
       />
       
       {/* Floating CTA Button */}

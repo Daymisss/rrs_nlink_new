@@ -34,6 +34,9 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   * {
     @apply border-border;
   }
@@ -44,12 +47,23 @@
 
 @layer components {
   .floating-nav {
-    @apply fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-6xl rounded-2xl px-6 py-3 shadow-lg border border-gray-200/20 backdrop-blur-xl;
-    background: rgba(248, 249, 250, 0.8);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    @apply fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-6xl rounded-2xl px-6 py-3 shadow-lg border border-white/10 backdrop-blur-xl;
+    /* More transparent navbar for subtle blending with page background */
+    /* Reduced background opacity for a lighter, more airy header */
+    /* Made more translucent for a cleaner, airy look */
+    background: rgba(15, 23, 42, 0.20);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.03);
     height: 72px;
     display: flex;
     align-items: center;
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .floating-nav:hover {
+    /* Slightly stronger on hover while still remaining translucent */
+    background: rgba(15, 23, 42, 0.38);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 6px 20px rgba(0, 0, 0, 0.04);
+    transform: translate(-50%, -1px);
   }
 
   .btn {
@@ -70,5 +84,17 @@
   
   .input {
     @apply flex h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  /* Contact modal specific styles */
+  .contact-modal-backdrop {
+    background: hsl(var(--luxury-grey-light) / 0.75);
+    backdrop-filter: blur(6px);
+  }
+
+  .contact-modal-panel {
+    background: hsl(var(--background) / 0.95);
+    border: 1px solid hsl(var(--border) / 0.6);
+    box-shadow: 0 10px 40px rgba(15, 23, 42, 0.12);
   }
 }

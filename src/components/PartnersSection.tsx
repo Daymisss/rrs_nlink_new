@@ -1,18 +1,77 @@
 export function PartnersSection() {
-  // Recommended: replace logoUrl with real partner logo public URLs or upload them to /public/partners
   const partners = [
-    { name: 'Mitre 10', description: 'Building supplies', website: 'https://www.mitre10.co.nz' },
-    { name: 'Bunnings NZ', description: 'Building supplies', website: 'https://www.bunnings.co.nz' },
-    { name: 'ColorSteel', description: 'Steel roofing solutions', website: 'https://www.colorsteel.co.nz' },
-    { name: 'VELUX', description: 'Skylight specialists', website: 'https://www.velux.co.nz' },
-    { name: 'Master Builders', description: 'Industry association', website: 'https://www.masterbuilders.org.nz' },
-    { name: 'WorkSafe NZ', description: 'Safety & compliance', website: 'https://www.worksafe.govt.nz' },
-    { name: 'BRANZ', description: 'Building research', website: 'https://www.branz.co.nz' },
-    { name: 'ColorCote', description: 'Protective coatings', website: 'https://www.colorcote.co.nz' },
-    { name: 'VELSITE', description: 'Site services', website: '#' },
-    { name: 'Roof Makers', description: 'Quality installations', website: '#' },
-    { name: 'Site Safe', description: 'Construction safety', website: 'https://www.sitesafe.org.nz' },
-    { name: 'Local Suppliers', description: 'Regional suppliers', website: '#' }
+    { 
+      name: 'Mitre 10', 
+      description: 'Building supplies', 
+      website: 'https://www.mitre10.co.nz',
+      logo: '/partners/mitre10.svg'
+    },
+    { 
+      name: 'Bunnings', 
+      description: 'Building supplies', 
+      website: 'https://www.bunnings.co.nz',
+      logo: '/partners/bunnings.svg'
+    },
+    { 
+      name: 'ColorSteel', 
+      description: 'Steel roofing solutions', 
+      website: 'https://www.colorsteel.co.nz',
+      logo: '/partners/colorsteel.svg'
+    },
+    { 
+      name: 'VELUX', 
+      description: 'Skylight specialists', 
+      website: 'https://www.velux.co.nz',
+      logo: '/partners/velux.svg'
+    },
+    { 
+      name: 'Master Builders', 
+      description: 'Industry association', 
+      website: 'https://www.masterbuilders.org.nz',
+      logo: '/partners/master-builders.svg'
+    },
+    { 
+      name: 'WorkSafe NZ', 
+      description: 'Safety & compliance', 
+      website: 'https://www.worksafe.govt.nz',
+      logo: '/partners/worksafe-nz.svg'
+    },
+    { 
+      name: 'BRANZ', 
+      description: 'Building research', 
+      website: 'https://www.branz.co.nz',
+      logo: '/partners/branz.svg'
+    },
+    { 
+      name: 'PlaceMakers', 
+      description: 'Building supplies', 
+      website: 'https://www.placemakers.co.nz',
+      logo: '/partners/placemakers.svg'
+    },
+    { 
+      name: 'Winstone Wallboards', 
+      description: 'Building materials', 
+      website: 'https://www.gib.co.nz',
+      logo: '/partners/winstone-wallboards.svg'
+    },
+    { 
+      name: 'James Hardie', 
+      description: 'Building products', 
+      website: 'https://www.jameshardie.co.nz',
+      logo: '/partners/james-hardie.svg'
+    },
+    { 
+      name: 'Site Safe', 
+      description: 'Construction safety', 
+      website: 'https://www.sitesafe.org.nz',
+      logo: '/partners/site-safe.svg'
+    },
+    { 
+      name: 'Altus', 
+      description: 'Building materials', 
+      website: 'https://www.altus.co.nz',
+      logo: '/partners/altus.svg'
+    }
   ]
 
   return (
@@ -49,9 +108,23 @@ export function PartnersSection() {
               key={index} 
               className="group text-center p-6 rounded-xl hover:bg-gray-50 transition-all duration-300 transform hover:scale-105"
             >
-              <div className="bg-gray-100 rounded-lg p-4 mb-3 group-hover:bg-gray-200 transition-colors duration-300">
+              <div className="bg-white rounded-lg p-4 mb-3 shadow-sm border border-gray-100 group-hover:shadow-md group-hover:border-gray-200 transition-all duration-300">
                 <div className="h-12 flex items-center justify-center">
-                  <span className="text-gray-600 font-bold text-lg group-hover:text-gray-800 transition-colors">
+                  {partner.logo ? (
+                    <img 
+                      src={partner.logo} 
+                      alt={`${partner.name} logo`}
+                      className="max-h-10 max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                      onError={(e) => {
+                        // Fallback to text if image fails to load
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const textSpan = target.nextElementSibling as HTMLSpanElement;
+                        if (textSpan) textSpan.style.display = 'block';
+                      }}
+                    />
+                  ) : null}
+                  <span className="text-gray-600 font-bold text-sm group-hover:text-gray-800 transition-colors" style={{ display: partner.logo ? 'none' : 'block' }}>
                     {partner.name}
                   </span>
                 </div>

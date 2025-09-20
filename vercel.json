@@ -1,0 +1,29 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "functions": {
+    "functions/send-booking-notification/index.js": {
+      "runtime": "edge"
+    },
+    "functions/send-calendar-event/index.js": {
+      "runtime": "edge"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/send-booking-notification",
+      "dest": "/functions/send-booking-notification/index.js"
+    },
+    {
+      "src": "/api/send-calendar-event",
+      "dest": "/functions/send-calendar-event/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "BLINK_PROJECT_ID": "reliable-roofing-solutions-website-zqr94aeq"
+  }
+}

@@ -1,14 +1,22 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "functions": {
-    "functions/send-booking-notification/index.js": {
-      "runtime": "edge"
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     },
-    "functions/send-calendar-event/index.js": {
-      "runtime": "edge"
+    {
+      "src": "functions/send-booking-notification/index.js",
+      "use": "@vercel/edge"
+    },
+    {
+      "src": "functions/send-calendar-event/index.js",
+      "use": "@vercel/edge"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/api/send-booking-notification",
@@ -22,8 +30,5 @@
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ],
-  "env": {
-    "BLINK_PROJECT_ID": "reliable-roofing-solutions-website-zqr94aeq"
-  }
+  ]
 }
